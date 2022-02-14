@@ -15,21 +15,22 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
       - name: Checkout repo
+        uses: actions/checkout@v2
+      
       
       - name: Get short SHA
-      - run: echo "GHA_SHA=${GITHUB_SHA:0:7}" >> $GITHUB_ENV
+        run: echo "GHA_SHA=${GITHUB_SHA:0:7}" >> $GITHUB_ENV
       
-      - uses: docker/build-push-action@v2
       - name: Build
+        uses: docker/build-push-action@v2
         with:
           tags: ewennerberg/lw-test-image:${{ env.GHA_SHA }},ewennerberg/lw-test-image:latest
           load: true
 
       # Runs a single command using the runners shell
-      - uses: lacework/lw-scanner-action@v0.6.0
       - name: Scan container images for vulnerabitilies using Lacework
+        uses: lacework/lw-scanner-action@v0.6.0
         with:
           LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }} 
           LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
