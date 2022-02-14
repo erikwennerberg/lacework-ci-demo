@@ -34,7 +34,7 @@ jobs:
            LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
            LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
         with:
-           image_name: renesiekermann/my-tweet-app-lacework
+           image_name: ewennerberg/lw-test-image
            image_tag: ${{ env.GHA_SHA }}
            fail_only_if_vulnerabilities_fixable: true
            scan_library_packages: true
