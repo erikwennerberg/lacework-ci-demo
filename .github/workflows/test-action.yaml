@@ -14,7 +14,7 @@ jobs:
       - name: Pull Docker image
         run: docker image pull techallylw/vulnerable-container:v0.0.1
 
-      - name: lacework/lw-scanner-action@v1.3.0
+      - uses: lacework/lw-scanner-action@v1.3.0
         with:
           LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
           LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
